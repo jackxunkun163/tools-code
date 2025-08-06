@@ -9,6 +9,7 @@
 - **技术博客**: 收集技术博客和开发网站的蓝牙技术文章
 - **学术论文**: 爬取arXiv、IEEE等学术平台的蓝牙相关论文
 - **专利信息**: 获取Google Patents等专利数据库的蓝牙专利
+- **视频内容**: 爬取YouTube、Bilibili等视频平台的蓝牙相关视频
 
 ### 🤖 AI智能总结
 - 使用OpenAI GPT模型生成每日文章总结
@@ -35,7 +36,8 @@
 │   ├── news_crawler.py         # 新闻爬虫
 │   ├── tech_crawler.py         # 技术文章爬虫
 │   ├── academic_crawler.py     # 学术论文爬虫
-│   └── manufacturer_crawler.py # 厂商和技术公司爬虫
+│   ├── manufacturer_crawler.py # 厂商和技术公司爬虫
+│   └── video_crawler.py        # 视频内容爬虫
 ├── 数据处理模块
 │   ├── database.py          # 数据库操作
 │   └── summarizer.py        # AI总结生成

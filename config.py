@@ -158,6 +158,43 @@ class Config:
         "epo.org"
     ]
     
+    # 视频网站源
+    VIDEO_SOURCES = [
+        # YouTube
+        "https://www.youtube.com/",
+        "https://www.youtube.com/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw",  # Google Developers
+        "https://www.youtube.com/channel/UCVHFxqBEqB-G9_6B7RHoL8A",  # Android Developers
+        "https://www.youtube.com/channel/UCsT0YIqwnpJCM-mx7-gSA4Q",  # TEDx
+        "https://www.youtube.com/channel/UCJWh7F3AFyQ_x01VKJr9eyA",  # Computerphile
+        
+        # Bilibili
+        "https://www.bilibili.com/",
+        "https://space.bilibili.com/19563832",  # 科技新一
+        "https://space.bilibili.com/37663924",  # 回形针PaperClip
+        "https://space.bilibili.com/25876945",  # 科技袁人
+        
+        # 优酷
+        "https://www.youku.com/",
+        
+        # 腾讯视频
+        "https://v.qq.com/",
+        
+        # 爱奇艺
+        "https://www.iqiyi.com/",
+        
+        # 抖音
+        "https://www.douyin.com/",
+        
+        # 快手
+        "https://www.kuaishou.com/",
+        
+        # Vimeo
+        "https://vimeo.com/",
+        
+        # Dailymotion
+        "https://www.dailymotion.com/"
+    ]
+    
     # OpenAI配置
     OPENAI_API_KEY = "sk-DDfoY7cmJeVDa3vJHSCNtMmGMHjBQ9Yt4PFo9LXmzTseCkCFECFn"
     OPENAI_BASE_URL = "https://api.oaipro.com/v1"

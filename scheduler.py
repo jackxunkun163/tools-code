@@ -9,6 +9,7 @@ from crawlers.news_crawler import NewsCrawler
 from crawlers.tech_crawler import TechCrawler
 from crawlers.academic_crawler import AcademicCrawler
 from crawlers.manufacturer_crawler import ManufacturerCrawler
+from crawlers.video_crawler import VideoCrawler
 from summarizer import Summarizer
 from config import Config
 
@@ -134,6 +135,16 @@ class CrawlerScheduler:
         except Exception as e:
             logging.error(f"手机厂商和技术公司网站爬取失败: {e}")
         
+        # 爬取视频内容
+        try:
+            logging.info("开始爬取视频内容...")
+            video_crawler = VideoCrawler()
+            video_articles = video_crawler.crawl(Config.SEARCH_KEYWORDS)
+            all_articles.extend(video_articles)
+            logging.info(f"视频内容爬取完成，获取 {len(video_articles)} 个视频")
+        except Exception as e:
+            logging.error(f"视频内容爬取失败: {e}")
+        
         return all_articles
     
     def _save_results(self, articles: List[Dict], summary: Dict):
@@ -163,7 +174,8 @@ class CrawlerScheduler:
                 'total_articles': len(articles),
                 'news_count': len([a for a in articles if a.get('source_type') == 'news']),
                 'tech_count': len([a for a in articles if a.get('source_type') == 'tech']),
-                'academic_count': len([a for a in articles if a.get('source_type') == 'academic'])
+                'academic_count': len([a for a in articles if a.get('source_type') == 'academic']),
+                'video_count': len([a for a in articles if a.get('source_type') == 'video'])
             }
             
             self.db.update_statistics(today, stats)

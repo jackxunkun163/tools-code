@@ -23,7 +23,8 @@ def get_source_type_color(source_type):
         'academic': 'warning',
         'patent': 'info',
         'forum': 'secondary',
-        'blog': 'dark'
+        'blog': 'dark',
+        'video': 'danger'
     }
     return color_map.get(source_type, 'secondary')
 
