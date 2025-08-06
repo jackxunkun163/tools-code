@@ -8,11 +8,11 @@ class Config:
     DATABASE_PATH = 'bluetooth_articles.db'
     
     # 定时任务配置
-    SCHEDULE_TIME = "08:00"  # 每天早上8点执行
+    SCHEDULE_TIME = "06:00"  # 每天早上8点执行
     
     # 搜索关键词
     SEARCH_KEYWORDS = [
-        "蓝牙", "Bluetooth", "BLE", "蓝牙技术", "蓝牙协议",
+        "蓝牙", "Bluetooth", "br/edr", "蓝牙技术", "蓝牙协议",
         "蓝牙开发", "蓝牙应用", "蓝牙芯片", "蓝牙耳机",
         "蓝牙音箱", "蓝牙连接", "蓝牙标准"
     ]
