@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+
+{% block title %}文章列表 - 蓝牙技术文章聚合平台{% endblock %}
+
+{% block content %}
+<!-- 页面标题 -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="mb-3">
+                    <i class="fas fa-newspaper"></i> 文章列表
+                </h2>
+                
+                <!-- 筛选器 -->
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="sourceType" class="form-label">来源类型</label>
+                        <select class="form-select" id="sourceType" onchange="filterArticles()">
+                            <option value="">全部来源</option>
+                            <option value="news" {% if source_type == 'news' %}selected{% endif %}>新闻</option>
+                            <option value="tech" {% if source_type == 'tech' %}selected{% endif %}>技术文章</option>
+                            <option value="academic" {% if source_type == 'academic' %}selected{% endif %}>学术论文</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="timeRange" class="form-label">时间范围</label>
+                        <select class="form-select" id="timeRange" onchange="filterArticles()">
+                            <option value="1" {% if days == 1 %}selected{% endif %}>最近1天</option>
+                            <option value="3" {% if days == 3 %}selected{% endif %}>最近3天</option>
+                            <option value="7" {% if days == 7 %}selected{% endif %}>最近7天</option>
+                            <option value="30" {% if days == 30 %}selected{% endif %}>最近30天</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 d-flex align-items-end">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchInput" placeholder="搜索文章标题或内容...">
+                            <button class="btn btn-primary" type="button" onclick="searchArticles()">
+                                <i class="fas fa-search"></i> 搜索
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 文章列表 -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-list"></i> 文章列表
+                    <span class="badge bg-primary ms-2">{{ articles|length }}</span>
+                </h5>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="changeView('list')">
+                        <i class="fas fa-list"></i> 列表视图
+                    </button>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="changeView('grid')">
+                        <i class="fas fa-th"></i> 网格视图
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if articles %}
+                    <div id="articlesContainer">
+                        {% for article in articles %}
+                        <div class="article-item mb-4 p-3 border rounded">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h5 class="article-title">
+                                        <a href="{{ article.url }}" target="_blank" class="text-decoration-none">
+                                            {{ article.title }}
+                                        </a>
+                                    </h5>
+                                    <p class="text-muted mb-2">
+                                        <i class="fas fa-calendar"></i> {{ article.publish_date or '未知时间' }}
+                                        <span class="ms-3">
+                                            <i class="fas fa-clock"></i> {{ article.created_at[:10] }}
+                                        </span>
+                                    </p>
+                                    <p class="mb-2">{{ article.content[:300] }}...</p>
+                                    
+                                    {% if article.keywords %}
+                                    <div class="mb-2">
+                                        <i class="fas fa-tags"></i>
+                                        {% for keyword in article.keywords[:5] %}
+                                        <span class="keyword-tag">{{ keyword }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-4 text-end">
+                                    <div class="mb-2">
+                                        <span class="badge bg-{{ getSourceTypeColor(article.source_type) }} source-badge">
+                                            {{ article.source_name }}
+                                        </span>
+                                    </div>
+                                    <div class="mb-2">
+                                        {% if article.sentiment %}
+                                        <span class="badge bg-{% if article.sentiment == '正面' %}success{% elif article.sentiment == '负面' %}danger{% else %}secondary{% endif %}">
+                                            {{ article.sentiment }}
+                                        </span>
+                                        {% endif %}
+                                    </div>
+                                    <a href="{{ article.url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-external-link-alt"></i> 阅读原文
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <!-- 分页 -->
+                    {% if total_pages > 1 %}
+                    <nav aria-label="文章分页">
+                        <ul class="pagination justify-content-center">
+                            {% if page > 1 %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('articles', page=page-1, source_type=source_type, days=days) }}">
+                                    <i class="fas fa-chevron-left"></i> 上一页
+                                </a>
+                            </li>
+                            {% endif %}
+                            
+                            {% for p in range(1, total_pages + 1) %}
+                            <li class="page-item {% if p == page %}active{% endif %}">
+                                <a class="page-link" href="{{ url_for('articles', page=p, source_type=source_type, days=days) }}">
+                                    {{ p }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                            
+                            {% if page < total_pages %}
+                            <li class="page-item">
+                                <a class="page-link" href="{{ url_for('articles', page=page+1, source_type=source_type, days=days) }}">
+                                    下一页 <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    {% endif %}
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
+                        <h5 class="text-muted">暂无文章数据</h5>
+                        <p class="text-muted">请尝试调整筛选条件或时间范围</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 加载状态 -->
+<div class="loading mt-4">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">加载中...</span>
+    </div>
+    <p class="mt-2">正在加载文章...</p>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let currentView = 'list';
+
+function filterArticles() {
+    const sourceType = document.getElementById('sourceType').value;
+    const timeRange = document.getElementById('timeRange').value;
+    
+    const url = new URL(window.location);
+    if (sourceType) {
+        url.searchParams.set('source_type', sourceType);
+    } else {
+        url.searchParams.delete('source_type');
+    }
+    url.searchParams.set('days', timeRange);
+    url.searchParams.delete('page'); // 重置到第一页
+    
+    window.location.href = url.toString();
+}
+
+function searchArticles() {
+    const query = document.getElementById('searchInput').value.trim();
+    if (query) {
+        window.location.href = `/search?q=${encodeURIComponent(query)}`;
+    }
+}
+
+function changeView(view) {
+    currentView = view;
+    const container = document.getElementById('articlesContainer');
+    
+    if (view === 'grid') {
+        container.classList.add('row');
+        const articles = container.querySelectorAll('.article-item');
+        articles.forEach(article => {
+            article.classList.add('col-md-6', 'col-lg-4');
+            article.classList.remove('mb-4');
+            article.classList.add('mb-3');
+        });
+    } else {
+        container.classList.remove('row');
+        const articles = container.querySelectorAll('.article-item');
+        articles.forEach(article => {
+            article.classList.remove('col-md-6', 'col-lg-4', 'mb-3');
+            article.classList.add('mb-4');
+        });
+    }
+}
+
+// 回车键搜索
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        searchArticles();
+    }
+});
+
+// 页面加载完成后隐藏加载状态
+document.addEventListener('DOMContentLoaded', function() {
+    hideLoading();
+});
+</script>
+{% endblock %} 

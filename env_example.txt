@@ -1,0 +1,17 @@
+# OpenAI API配置
+OPENAI_API_KEY=sk-DDfoY7cmJeVDa3vJHSCNtMmGMHjBQ9Yt4PFo9LXmzTseCkCFECFn
+OPENAI_BASE_URL=https://api.oaipro.com/v1
+
+# 数据库配置
+DATABASE_PATH=bluetooth_articles.db
+
+# Web服务器配置
+HOST=0.0.0.0
+PORT=5000
+DEBUG=False
+
+# 定时任务配置
+SCHEDULE_TIME=08:00
+
+# 数据保留天数
+DATA_RETENTION_DAYS=30 

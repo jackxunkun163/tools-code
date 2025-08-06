@@ -1,0 +1,15 @@
+[Unit]
+Description=蓝牙技术文章聚合平台
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/path/to/your/project
+Environment=PATH=/path/to/your/project/venv/bin
+ExecStart=/path/to/your/project/venv/bin/python main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target 
