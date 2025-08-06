@@ -12,8 +12,8 @@
 
 ### 软件要求
 - **操作系统**: Ubuntu 20.04+ / CentOS 8+ / Debian 11+
-- **Python**: 3.8+
-- **数据库**: SQLite3 (内置)
+- **Python**: 3.8+ (包含 SQLite3 支持)
+- **数据库**: SQLite3 (Python 内置)
 - **Web服务器**: Nginx (推荐)
 
 ## 部署步骤
