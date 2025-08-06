@@ -95,9 +95,9 @@
                                 </div>
                                 <div class="col-md-4 text-end">
                                     <div class="mb-2">
-                                        <span class="badge bg-{{ getSourceTypeColor(article.source_type) }} source-badge">
-                                            {{ article.source_name }}
-                                        </span>
+                                                                    <span class="badge bg-{{ article.source_type|getSourceTypeColor }} source-badge">
+                                {{ article.source_name }}
+                            </span>
                                     </div>
                                     <div class="mb-2">
                                         {% if article.sentiment %}

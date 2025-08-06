@@ -13,6 +13,20 @@ app.config['SECRET_KEY'] = 'bluetooth_articles_secret_key'
 db = Database()
 summarizer = Summarizer()
 
+# 模板全局函数
+@app.template_filter('getSourceTypeColor')
+def get_source_type_color(source_type):
+    """根据来源类型返回对应的Bootstrap颜色类"""
+    color_map = {
+        'news': 'primary',
+        'tech': 'success', 
+        'academic': 'warning',
+        'patent': 'info',
+        'forum': 'secondary',
+        'blog': 'dark'
+    }
+    return color_map.get(source_type, 'secondary')
+
 # 配置日志
 logging.basicConfig(level=logging.INFO)
 

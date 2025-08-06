@@ -71,7 +71,7 @@
                                     {{ article.title }}
                                 </a>
                             </h6>
-                            <span class="badge bg-{{ getSourceTypeColor(article.source_type) }} source-badge">
+                            <span class="badge bg-{{ article.source_type|getSourceTypeColor }} source-badge">
                                 {{ article.source_name }}
                             </span>
                         </div>
