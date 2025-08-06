@@ -42,9 +42,15 @@ fi
 mkdir -p logs
 
 # 启动程序
-echo "启动蓝牙技术文章聚合平台..."
-echo "Web界面地址: http://localhost:5000"
-echo "按 Ctrl+C 停止程序"
+echo "============================================================"
+echo "选择运行模式："
+echo "1. 完整启动 (爬虫 + Web服务器): python3 main.py"
+echo "2. 立即检索文章: python3 run_crawler.py"
+echo "3. 快速启动 (后台爬虫 + Web服务器): python3 quick_start.py"
+echo "4. 测试爬虫: python3 test_crawler.py"
+echo "============================================================"
+echo "推荐使用模式2立即开始检索文章"
 echo "============================================================"
 
+# 默认启动完整模式
 python3 main.py 
