@@ -8,6 +8,7 @@ from database import Database
 from crawlers.news_crawler import NewsCrawler
 from crawlers.tech_crawler import TechCrawler
 from crawlers.academic_crawler import AcademicCrawler
+from crawlers.manufacturer_crawler import ManufacturerCrawler
 from summarizer import Summarizer
 from config import Config
 
@@ -114,6 +115,24 @@ class CrawlerScheduler:
             logging.info(f"学术论文和专利爬取完成，获取 {len(academic_articles)} 篇文章")
         except Exception as e:
             logging.error(f"学术论文和专利爬取失败: {e}")
+        
+        # 爬取手机厂商和技术公司网站
+        try:
+            logging.info("开始爬取手机厂商和技术公司网站...")
+            manufacturer_crawler = ManufacturerCrawler()
+            
+            # 爬取手机厂商网站
+            manufacturer_articles = manufacturer_crawler.crawl_manufacturer_sites(limit=30)
+            all_articles.extend(manufacturer_articles)
+            logging.info(f"手机厂商网站爬取完成，获取 {len(manufacturer_articles)} 篇文章")
+            
+            # 爬取技术公司网站
+            tech_company_articles = manufacturer_crawler.crawl_tech_company_sites(limit=50)
+            all_articles.extend(tech_company_articles)
+            logging.info(f"技术公司网站爬取完成，获取 {len(tech_company_articles)} 篇文章")
+            
+        except Exception as e:
+            logging.error(f"手机厂商和技术公司网站爬取失败: {e}")
         
         return all_articles
     

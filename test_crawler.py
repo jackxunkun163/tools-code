@@ -15,6 +15,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from crawlers.news_crawler import NewsCrawler
 from crawlers.tech_crawler import TechCrawler
 from crawlers.academic_crawler import AcademicCrawler
+from crawlers.manufacturer_crawler import ManufacturerCrawler
 from database import Database
 from config import Config
 
@@ -60,6 +61,30 @@ def test_academic_crawler():
         print(f"❌ 学术论文爬虫失败: {e}")
         return []
 
+def test_manufacturer_crawler():
+    """测试手机厂商爬虫"""
+    print("📱 测试手机厂商爬虫...")
+    try:
+        crawler = ManufacturerCrawler()
+        articles = crawler.crawl_manufacturer_sites(limit=5)  # 只爬取5篇文章
+        print(f"✅ 手机厂商爬虫成功，获取 {len(articles)} 篇文章")
+        return articles
+    except Exception as e:
+        print(f"❌ 手机厂商爬虫失败: {e}")
+        return []
+
+def test_tech_company_crawler():
+    """测试技术公司爬虫"""
+    print("🏢 测试技术公司爬虫...")
+    try:
+        crawler = ManufacturerCrawler()
+        articles = crawler.crawl_tech_company_sites(limit=5)  # 只爬取5篇文章
+        print(f"✅ 技术公司爬虫成功，获取 {len(articles)} 篇文章")
+        return articles
+    except Exception as e:
+        print(f"❌ 技术公司爬虫失败: {e}")
+        return []
+
 def main():
     print("=" * 60)
     print("🧪 蓝牙技术文章爬虫测试")
@@ -90,6 +115,14 @@ def main():
         # 测试学术论文爬虫
         academic_articles = test_academic_crawler()
         all_articles.extend(academic_articles)
+        
+        # 测试手机厂商爬虫
+        manufacturer_articles = test_manufacturer_crawler()
+        all_articles.extend(manufacturer_articles)
+        
+        # 测试技术公司爬虫
+        tech_company_articles = test_tech_company_crawler()
+        all_articles.extend(tech_company_articles)
         
         # 保存到数据库
         print(f"\n💾 保存文章到数据库...")

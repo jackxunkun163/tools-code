@@ -36,6 +36,112 @@ class Config:
         "https://github.com/"
     ]
     
+    # 手机厂商官方技术网站
+    PHONE_MANUFACTURER_SOURCES = [
+        # 苹果
+        "https://developer.apple.com/",
+        "https://developer.apple.com/documentation/",
+        "https://developer.apple.com/news/",
+        
+        # 三星
+        "https://developer.samsung.com/",
+        "https://news.samsung.com/global/",
+        "https://research.samsung.com/",
+        
+        # 华为
+        "https://developer.huawei.com/",
+        "https://www.huawei.com/cn/corporate-information/",
+        "https://www.hisilicon.com/",
+        
+        # 小米
+        "https://dev.mi.com/",
+        "https://blog.mi.com/",
+        "https://www.mi.com/global/",
+        
+        # OPPO
+        "https://open.oppomobile.com/",
+        "https://www.oppo.com/cn/about-us/news/",
+        
+        # vivo
+        "https://dev.vivo.com.cn/",
+        "https://www.vivo.com/",
+        
+        # 一加
+        "https://www.oneplus.com/",
+        "https://forums.oneplus.com/",
+        
+        # 谷歌
+        "https://developers.google.com/",
+        "https://android-developers.googleblog.com/",
+        "https://source.android.com/",
+        
+        # 索尼
+        "https://developer.sony.com/",
+        "https://www.sony.com/electronics/",
+        
+        # LG
+        "https://gscs.lge.com/",
+        "https://www.lg.com/global/",
+        
+        # 摩托罗拉
+        "https://developer.motorola.com/",
+        "https://www.motorola.com/"
+    ]
+    
+    # 主要技术公司官方网站
+    TECH_COMPANY_SOURCES = [
+        # 芯片厂商
+        "https://www.qualcomm.com/",
+        "https://developer.qualcomm.com/",
+        "https://www.broadcom.com/",
+        "https://www.mediatek.com/",
+        "https://www.intel.com/",
+        "https://www.amd.com/",
+        "https://www.nvidia.com/",
+        "https://www.arm.com/",
+        "https://www.cypress.com/",
+        "https://www.ti.com/",
+        "https://www.st.com/",
+        "https://www.nxp.com/",
+        "https://www.microchip.com/",
+        "https://www.infineon.com/",
+        "https://www.nordic.com/",
+        "https://www.dialog-semiconductor.com/",
+        "https://www.espressif.com/",
+        
+        # 软件和平台公司
+        "https://developers.google.com/",
+        "https://developer.apple.com/",
+        "https://docs.microsoft.com/",
+        "https://developer.microsoft.com/",
+        "https://aws.amazon.com/",
+        "https://developer.amazon.com/",
+        "https://developers.facebook.com/",
+        "https://developer.twitter.com/",
+        "https://developer.linkedin.com/",
+        "https://cloud.google.com/",
+        "https://azure.microsoft.com/",
+        
+        # 开源社区和标准组织
+        "https://www.bluetooth.com/",
+        "https://www.bluetooth.org/",
+        "https://www.kernel.org/",
+        "https://git.kernel.org/",
+        "https://lwn.net/",
+        "https://www.linuxfoundation.org/",
+        "https://www.eclipse.org/",
+        "https://apache.org/",
+        
+        # 技术媒体和博客
+        "https://www.anandtech.com/",
+        "https://arstechnica.com/",
+        "https://spectrum.ieee.org/",
+        "https://www.edn.com/",
+        "https://www.embedded.com/",
+        "https://hackaday.com/",
+        "https://www.electronicsweekly.com/"
+    ]
+    
     # 学术论文源
     ACADEMIC_SOURCES = [
         "arxiv.org",

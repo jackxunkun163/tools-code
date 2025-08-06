@@ -31,10 +31,11 @@
 
 ```
 ├── 爬虫模块 (crawlers/)
-│   ├── base_crawler.py      # 基础爬虫类
-│   ├── news_crawler.py      # 新闻爬虫
-│   ├── tech_crawler.py      # 技术文章爬虫
-│   └── academic_crawler.py  # 学术论文爬虫
+│   ├── base_crawler.py         # 基础爬虫类
+│   ├── news_crawler.py         # 新闻爬虫
+│   ├── tech_crawler.py         # 技术文章爬虫
+│   ├── academic_crawler.py     # 学术论文爬虫
+│   └── manufacturer_crawler.py # 厂商和技术公司爬虫
 ├── 数据处理模块
 │   ├── database.py          # 数据库操作
 │   └── summarizer.py        # AI总结生成
@@ -116,7 +117,7 @@ python -c "from scheduler import CrawlerScheduler; CrawlerScheduler().run_manual
 
 ## 数据来源
 
-### 新闻网站
+### 新闻网站 (6个)
 - CNBeta
 - IT之家
 - Engadget
@@ -124,17 +125,73 @@ python -c "from scheduler import CrawlerScheduler; CrawlerScheduler().run_manual
 - TechCrunch
 - Wired
 
-### 技术博客
+### 技术博客 (5个)
 - InfoQ
 - Medium
 - Dev.to
 - GitHub
 - Stack Overflow
 
-### 学术平台
+### 学术平台 (5个)
 - arXiv
 - IEEE Xplore
+- ACM Digital Library
+- ScienceDirect
 - Google Patents
+
+### 🆕 手机厂商官方网站 (13个厂商)
+- **苹果**: 开发者文档、CoreBluetooth技术
+- **三星**: 开发者平台、Galaxy连接技术
+- **华为**: 开发者社区、HarmonyOS蓝牙
+- **小米**: MIUI开发平台、IoT生态
+- **OPPO**: ColorOS开发文档
+- **vivo**: OriginOS技术资源
+- **一加**: OxygenOS开发指南
+- **谷歌**: Android蓝牙开发、AOSP
+- **索尼**: 音频技术、开发者资源
+- **LG**: 连接技术文档
+- **摩托罗拉**: Moto开发平台
+
+### 🆕 技术公司网站 (25+个公司)
+
+**芯片厂商** (13个):
+- **高通 (Qualcomm)**: 蓝牙芯片领导者、技术白皮书
+- **联发科 (MediaTek)**: 移动芯片蓝牙方案
+- **Intel**: 计算平台蓝牙集成技术
+- **ARM**: 处理器架构蓝牙支持
+- **Nordic**: 低功耗蓝牙专家、nRF系列
+- **德州仪器 (TI)**: 嵌入式蓝牙方案
+- **意法半导体 (ST)**: MCU集成蓝牙
+- **恩智浦 (NXP)**: 汽车和IoT蓝牙
+- **英飞凌 (Infineon)**: 安全蓝牙方案
+- **Dialog**: 超低功耗蓝牙专家
+- **乐鑫 (Espressif)**: ESP32 WiFi+蓝牙
+- **博通 (Broadcom)**: 连接芯片方案
+- **Microchip**: 嵌入式蓝牙MCU
+
+**软件和平台** (8个):
+- **微软**: Windows蓝牙技术文档
+- **亚马逊**: AWS IoT、Alexa蓝牙
+- **Facebook/Meta**: AR/VR连接技术
+- **Twitter**: API连接技术
+- **LinkedIn**: 开发者平台
+- **Google Cloud**: 云端IoT连接
+- **Azure**: 微软云IoT服务
+
+**标准组织和开源** (6个):
+- **蓝牙技术联盟**: 官方标准和规范
+- **Linux内核**: 开源蓝牙协议栈
+- **Eclipse IoT**: 物联网开源项目
+- **Apache**: 开源技术项目
+- **Linux基金会**: 开源生态系统
+
+**技术媒体** (6个):
+- **AnandTech**: 硬件深度评测
+- **Ars Technica**: 技术新闻分析
+- **IEEE Spectrum**: 工程技术期刊
+- **EDN**: 电子设计网络
+- **Embedded**: 嵌入式系统资讯
+- **Hackaday**: 创客技术分享
 
 ## 技术栈
 
